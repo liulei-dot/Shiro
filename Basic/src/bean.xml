@@ -1,0 +1,124 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+        <!-- <bean id="person" class="Person">
+             <property name="name">
+                 <value><![CDATA[<南京>]]></value>
+             </property>
+             <property name="age" value="14"></property>
+         </bean>
+
+         <bean id="userDao" class="UserDao"></bean>
+         <bean id="userService" class="UserService">
+             <property name="userDao" ref="userDao"></property>
+         </bean>
+
+
+         <bean id="emp" class="Emp">
+             <property name="name" value="张三"></property>
+             <property name="gender" value="男"></property>
+             &lt;!&ndash;不可以少这个ref&ndash;&gt;
+             <property name="dept" ref="dept"></property>
+
+             &lt;!&ndash;相当于在第一种方式的情况下，利用此种方式覆盖原来的值&ndash;&gt;
+             <property name="dept.name" value="销售部"></property>
+         </bean>
+         &lt;!&ndash;不可以少&ndash;&gt;
+         <bean id="dept" class="Dept" init-method="initMethod" destroy-method="destoryMethod">
+             <property name="name" value="技术部"></property>
+         </bean>
+
+
+             <util:list id="array">
+                 &lt;!&ndash;提取数组，数组可以换成list的&ndash;&gt;
+                 <value>语文</value>
+                 <value>计算机</value>
+             </util:list>
+             <util:list id="list">
+                 &lt;!&ndash;提取list&ndash;&gt;
+                 <value>身高</value>
+                 <value>体重</value>
+                 <value>头发</value>
+             </util:list>
+             <util:map id="map">
+                 &lt;!&ndash;提取map&ndash;&gt;
+                 <entry key="张三" value="三儿"></entry>
+                 <entry key="李四" value="四儿"></entry>
+             </util:map>
+             <util:set id="set">
+                 &lt;!&ndash;提取set&ndash;&gt;
+                 <value>中国</value>
+                 <value>中国</value>
+                 <value>美国</value>
+             </util:set>
+             <util:list id="listObj">
+                 &lt;!&ndash;提取list,其中属性是对象&ndash;&gt;
+                 <ref bean="dept1"></ref>
+                 <ref bean="dept2"></ref>
+             </util:list>
+             <util:map id="mapObj">
+                 &lt;!&ndash;提取map,其中key属性是字符串，value属性是对象&ndash;&gt;
+                 <entry key="1" value-ref="dept2"></entry>
+                 <entry key="2" value-ref="dept1"></entry>
+             </util:map>
+
+         <bean id="student" class="Student">
+             <property name="courses" ref="array"></property>
+             <property name="list" ref="list"></property>
+             <property name="maps" ref="map"></property>
+             <property name="sets" ref="set"></property>
+             <property name="listObj" ref="listObj"></property>
+             <property name="mapObj" ref="mapObj"></property>
+         </bean>
+
+         <bean id="dept1" class="Dept">
+             <property name="name" value="市场部"></property>
+         </bean>
+         <bean id="dept2" class="Dept">
+             <property name="name" value="营销部"></property>
+         </bean>
+
+         <bean id="myBean" class="MyBean">
+
+         </bean>
+     -->
+    <!--<bean id="dept" class="Dept" init-method="initMethod" destroy-method="destoryMethod">
+        <property name="name" value="技术部"></property>
+    </bean>
+    &lt;!&ndash;需要配置才可以使用后置处理器&ndash;&gt;
+    <bean id="myBeanPost" class="MyBeanPost">
+
+    </bean>-->
+    <bean id="emp" class="com.atguigu.dao.service.Emp" autowire="byType">
+        <property name="name" value="张三"></property>
+        <property name="gender" value="男"></property>
+    </bean>
+    <bean id="dept" class="com.atguigu.dao.service.Dept">
+        <property name="name" value="技术2"></property>
+    </bean>
+    <!--Dept类不能有两个bean标签，因为根据类型注入时，或出现重复不知道选取哪一个
+    <bean id="dept2" class="Dept">
+        <property name="name" value="技术2"></property>
+    </bean>-->
+
+    <!--<bean id="druid" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql:///test"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="123456"></property>
+     </bean>-->
+    <!--引入外部属性文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+
+    <!--配置连接池-->
+    <bean id="druid" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${driverClassName}"></property>
+        <property name="url" value="${url}"></property>
+        <property name="username" value="${username}"></property>
+        <property name="password" value="${password}"></property>
+    </bean>
+</beans>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+        <!-- 第一步声明：
+                xmlns:p="http://www.springframework.org/schema/p"
+             第二步，在bean标签里注入属性值
+        -->
+    <bean id="person" class="com.atguigu.dao.domain.Person" p:name="李四" p:age="24">
+
+    </bean>
+
+</beans>
