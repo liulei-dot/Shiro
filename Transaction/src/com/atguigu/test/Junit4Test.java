@@ -1,7 +1,7 @@
 package com.atguigu.test;
 
 import com.atguigu.config.RealConfig;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
